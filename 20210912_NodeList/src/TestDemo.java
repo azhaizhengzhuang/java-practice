@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * @Author: 江桂煌
  * @Description: 测试用例
@@ -6,15 +9,17 @@
 public class TestDemo {
     public static void main(String[] args) {
         SingleLinkedList sList = new SingleLinkedList();
+        sList.addLast(2);
+        sList.addLast(2);
         sList.addLast(1);
         sList.addLast(1);
         sList.addLast(2);
-        sList.addLast(2);
-        sList.addLast(2);
-        sList.addLast(3);
         sList.addLast(1);
+        sList.addLast(2);
+        sList.addLast(2);
         sList.display();
         sList.removeAllKey(2);
         sList.display();
+
     }
 }
