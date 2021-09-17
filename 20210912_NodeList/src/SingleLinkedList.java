@@ -5,19 +5,19 @@
  **/
 class Node {
    public int data;
-   Node next;
+   public Node next;
 
     public Node(int data) {
         this.data = data;
     }
 }
 public class SingleLinkedList {
-    Node head;
+    public Node head;
     //头插法
     public void addFirst(int data){
-        Node newNode = new Node(data);
-        newNode.next = this.head;
-        this.head = newNode;
+       Node newNode = new Node(data);
+       newNode.next = this.head;
+       this.head = newNode;
     }
     //尾插法
     public void addLast(int data){
@@ -32,11 +32,10 @@ public class SingleLinkedList {
         }
         cur.next = newNode;
     }
-    //返回下标为index - 1的节点的引用
-    private  Node findLastNode(int index) {
-        //index合法性检查
-        if (index < 0 || index > this.size()){
-            throw new RuntimeException("index不合法");
+    //返回下标为index-1的节点
+    private Node lastNode(int index) {
+        if (index < 0 || index > this.size()) {
+            throw new RuntimeException("index不合法！");
         }
         int count = 0;
         Node cur = this.head;
@@ -56,7 +55,7 @@ public class SingleLinkedList {
             this.addLast(data);
             return;
         }
-        Node lastNode = findLastNode(index);
+        Node lastNode = this.lastNode(index);
         Node newNode = new Node(data);
         newNode.next = lastNode.next;
         lastNode.next = newNode;
@@ -75,56 +74,55 @@ public class SingleLinkedList {
     //删除第一次出现关键字为key的节点
     public void remove(int key){
         Node cur = this.head;
-        Node pre = null;
+        Node prev = null;
         while (cur != null) {
-            //删除头结点的情况
             if (cur.data == key) {
-                if(pre == null) {
-                    this.head = cur.next;
+                if (this.head.data == key) {
+                    this.head = this.head.next;
+                    return;
+                } else {
+                    prev.next = cur.next;
                     return;
                 }
-                pre.next = cur.next;
-                return;
+            } else {
+                prev = cur;
+                cur = cur.next;
             }
-            pre = cur;
-            cur = cur.next;
         }
+        System.out.println("你要删除的节点不存在！");
     }
     //删除所有值为key的节点
     public void removeAllKey(int key) {
-        //博哥的代码实现
-        if (this.head == null) {
-            return;
-        }
-        Node cur = this.head.next;
-        Node prev = this.head;
+        Node cur = this.head;
+        Node prev = null;
         while (cur != null) {
             if (cur.data == key) {
-                prev.next = cur.next;
+                if (this.head.data == key) {
+                    this.head = this.head.next;
+                } else {
+                    prev.next = cur.next;
+                }
             } else {
                 prev = cur;
             }
             cur = cur.next;
         }
-        if (this.head.data == key) {
-            this.head = head.next;
-        }
-
     }
+
     //得到单链表的长度
     public int size() {
-        int count = 0;
         Node cur = this.head;
+        int size = 0;
         while (cur != null) {
-            count++;
+            size++;
             cur = cur.next;
         }
-        return count;
+        return size;
     }
     public void display(){
-        Node cur = head;
+        Node cur = this.head;
         while (cur != null) {
-            System.out.print(cur.data + "->");
+            System.out.print(cur.data + " ->");
             cur = cur.next;
         }
         System.out.println("null");
@@ -132,6 +130,8 @@ public class SingleLinkedList {
     public void clear() {
         this.head = null;
     }
-
+    
 }
+
+
 

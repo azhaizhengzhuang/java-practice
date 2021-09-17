@@ -7,35 +7,36 @@ import java.util.function.DoubleToIntFunction;
  * @DateTime: 2021/9/11 18:48
  **/
 class MyArrayList {
-    private int[] elem;
-    private int usedSize;
+    int[] elem;
+    int usedSize;
     //顺序表初始化
     public MyArrayList() {
-       this.elem = new int[10];
-       this.usedSize = 0;
+        this.elem = new int[10];
     }
+
+
     private void inserCheck(int pos) {
         if (pos < 0 || pos > this.usedSize) {
-            throw new RuntimeException("下标不合法！");
+            throw new RuntimeException("pos不合法！");
         }
     }
     private void existCheck(int pos) {
         if (pos < 0 || pos >= this.usedSize) {
-            throw new RuntimeException("下标不合法！");
+            throw new RuntimeException("pos不合法！");
         }
     }
     private void isFull() {
-        if (this.elem.length == this.usedSize) {
-            this.elem = Arrays.copyOf(this.elem, 2 * this.elem.length);
+        if (this.usedSize == this.elem.length) {
+            this.elem = Arrays.copyOf(this.elem,2 * this.elem.length);
         }
-   }
+    }
     //在pos位置新增元素
 
     public void add(int pos,int data) {
-        isFull();
-        inserCheck(pos);
-        for (int i = this.usedSize - 1; i >= pos; i--) {
-            this.elem[i + 1] = this.elem[i];
+        this.inserCheck(pos);
+        this.isFull();
+        for (int i = pos; i < this.usedSize; i++) {
+            this.elem[i] = this.elem[i + 1];
         }
         this.elem[pos] = data;
         this.usedSize++;
@@ -64,25 +65,23 @@ class MyArrayList {
 
     // 获取 pos 位置的元素 public int getPos(int pos)
     public int getPos(int pos) {
-       existCheck(pos);
-       return this.elem[pos];
+        this.existCheck(pos);
+        return this.elem[pos];
     }
     // 给 pos 位置的元素设为 value
     public void setPos(int pos, int value) {
-        int tmp = this.search(pos);
-        if (pos == -1) {
-            return;
-        }
-        this.elem[tmp] = value;
+        this.existCheck(pos);
+        this.elem[pos] = value;
     }
     //删除第一次出现的关键字key
     public void remove(int toRemove) {
         int pos = this.search(toRemove);
         if (pos == -1) {
+            System.out.println("没有你要删除的元素！");
             return;
         }
         for (int i = pos; i < this.usedSize - 1; i++) {
-            this.elem[i] = this.elem[i + 1];
+            this.elem[i] = this.elem[1 + i];
         }
         this.usedSize--;
     }
@@ -94,31 +93,27 @@ class MyArrayList {
     public void clear() {
         this.usedSize = 0;
     }
-
-    @Override
-    public String toString() {
-        String str = "";
+    public void display() {
         for (int i = 0; i < this.usedSize; i++) {
-            str += this.elem[i];
-            if (i != this.usedSize - 1) {
-                str += ", ";
-            }
+            System.out.print(this.elem[i] + " ");
         }
-        return "MyArrayList{" +
-                "elem=" + str +
-                '}';
+        System.out.println();
     }
+
 }
 public class Test1 {
     public static void main(String[] args) {
-       MyArrayList list = new MyArrayList();
-        for (int i = 0; i < 19; i++) {
+        MyArrayList list = new MyArrayList();
+        for (int i = 0; i < 12; i++) {
             list.add(i,i);
         }
-        System.out.println(list);
-        System.out.println(list.size());
-        list.clear();
-        System.out.println(list);
+        list.display();
+        list.remove(0);
+        list.remove(11);
+        list.remove(6);
+        list.display();
+        list.remove(6);
+        list.display();
     }
 }
 

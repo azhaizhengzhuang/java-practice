@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -9,17 +11,16 @@ import java.util.Arrays;
 public class TestDemo {
     public static void main(String[] args) {
         SingleLinkedList sList = new SingleLinkedList();
-        sList.addLast(2);
-        sList.addLast(2);
         sList.addLast(1);
         sList.addLast(1);
         sList.addLast(2);
         sList.addLast(1);
         sList.addLast(2);
-        sList.addLast(2);
+        sList.addLast(1);
+        sList.addLast(1);
+        sList.addLast(1);
         sList.display();
-        sList.removeAllKey(2);
+        sList.removeAllKey(1);
         sList.display();
-
     }
 }
