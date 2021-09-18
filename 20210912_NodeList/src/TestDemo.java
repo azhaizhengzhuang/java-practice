@@ -13,14 +13,14 @@ public class TestDemo {
         SingleLinkedList sList = new SingleLinkedList();
         sList.addLast(1);
         sList.addLast(1);
-        sList.addLast(2);
-        sList.addLast(1);
-        sList.addLast(2);
         sList.addLast(1);
         sList.addLast(1);
         sList.addLast(1);
+        sList.addLast(1);
+
         sList.display();
         sList.removeAllKey(1);
         sList.display();
+
     }
 }

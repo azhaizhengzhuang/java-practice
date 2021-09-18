@@ -3,7 +3,7 @@ import java.util.function.DoubleToIntFunction;
 
 /**
  * @Author: 江桂煌
- * @Description: TODO
+ * @Description: 第四次独立实现顺序表
  * @DateTime: 2021/9/11 18:48
  **/
 class MyArrayList {
@@ -14,35 +14,39 @@ class MyArrayList {
         this.elem = new int[10];
     }
 
-
-    private void inserCheck(int pos) {
+    private void insertCheck(int pos) {
         if (pos < 0 || pos > this.usedSize) {
-            throw new RuntimeException("pos不合法！");
+            throw new RuntimeException("pos不合法");
         }
     }
+
     private void existCheck(int pos) {
         if (pos < 0 || pos >= this.usedSize) {
-            throw new RuntimeException("pos不合法！");
+            throw new RuntimeException("pos不合法");
         }
     }
+
     private void isFull() {
         if (this.usedSize == this.elem.length) {
-            this.elem = Arrays.copyOf(this.elem,2 * this.elem.length);
+            this.elem = Arrays.copyOf(this.elem,this.elem.length * 2);
         }
     }
+
+
     //在pos位置新增元素
 
     public void add(int pos,int data) {
-        this.inserCheck(pos);
-        this.isFull();
-        for (int i = pos; i < this.usedSize; i++) {
-            this.elem[i] = this.elem[i + 1];
+       this.insertCheck(pos);
+       isFull();
+        for (int i = this.usedSize; i > pos; i--) {
+            this.elem[i] = this.elem[i - 1];
         }
         this.elem[pos] = data;
         this.usedSize++;
     }
     //判断某元素是否存在
     public boolean contains(int toFind){
+
         for (int i = 0; i < this.usedSize; i++) {
             if (this.elem[i] == toFind) {
                 return true;
@@ -77,11 +81,11 @@ class MyArrayList {
     public void remove(int toRemove) {
         int pos = this.search(toRemove);
         if (pos == -1) {
-            System.out.println("没有你要删除的元素！");
+            System.out.println("要删除的关键字不存在！");
             return;
         }
         for (int i = pos; i < this.usedSize - 1; i++) {
-            this.elem[i] = this.elem[1 + i];
+            this.elem[i] = this.elem[i + 1];
         }
         this.usedSize--;
     }
@@ -110,10 +114,10 @@ public class Test1 {
         list.display();
         list.remove(0);
         list.remove(11);
-        list.remove(6);
+        list.remove(7);
         list.display();
-        list.remove(6);
-        list.display();
+        list.remove(999);
+
     }
 }
 
