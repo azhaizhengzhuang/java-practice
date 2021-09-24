@@ -3,6 +3,7 @@ import com.zhai.User.Passager;
 import com.zhai.User.User;
 import com.zhai.book.BookList;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Scanner;
  * @DateTime: 2021/9/21 20:41
  **/
 public class TestMain {
+
     public static User login() {
         System.out.println("欢迎来到图书管理系统，请输入您的用户名:>");
         Scanner scanner = new Scanner(System.in);
