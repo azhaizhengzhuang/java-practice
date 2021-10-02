@@ -7,7 +7,16 @@ import java.util.*;
  * @DateTime: 2021/9/30 14:39
  **/
 public class Test1 {
+
+    public static int func() {
+        return 0;
+    }
+
     public static void main(String[] args) {
+
+
+    }
+    public static void main2(String[] args) {
         //map
         Map<String, String> map = new HashMap<>();
         map.put("hehe", "haha");
@@ -19,6 +28,7 @@ public class Test1 {
         System.out.println(map.containsKey("enen1"));
         System.out.println(map.containsValue("ouou"));
         System.out.println(map.containsValue("ouou1"));
+
         System.out.println(map.isEmpty());
         System.out.println(map.size());
         Set<Map.Entry<String, String>> entries = map.entrySet();
