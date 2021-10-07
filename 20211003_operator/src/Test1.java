@@ -9,13 +9,16 @@ import java.util.Scanner;
 
 
 public class Test1 {
+
+    public static void main(String[] args) {
+    }
     public static void stringFunc(String str1, String str2) {
         System.out.println("str1 == str2 : " + str1 == str2);
         System.out.println("str1 == str2 : " + str1 != str2);
         System.out.println("str1 equals str2 : " + str1.equals(str2));
 
     }
-    public static void main(String[] args) {
+    public static void main9(String[] args) {
         //字符串赋值操作符相关的练习
         stringFunc("hehe", "haha");
         stringFunc("xixi", "gaga");
